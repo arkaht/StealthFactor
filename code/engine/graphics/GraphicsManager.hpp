@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Shape.hpp>
 #include <SFML/Window/Event.hpp>
 #include "engine/util/Event.hpp"
+#include "engine/gameplay/components/DrawComponent.hpp"
 
 namespace engine
 {
@@ -42,18 +43,23 @@ namespace engine
 
 			Manager( engine::Engine& engine );
 
-			void clear();
+			void registerComponent( std::shared_ptr<gameplay::components::DrawComponent> component );
+			void unregisterComponent( std::shared_ptr<gameplay::components::DrawComponent> component );
+			
 			void update();
-			void display();
+			void draw();
 			void close();
 
 			void setViewPosition( const sf::Vector2f& pos );
 
-			void draw(const ShapeList &shapeList, const sf::Transform &transform);
+			void drawShape(const ShapeList &shapeList, const sf::Transform &transform);
 
 			bool hasFocus() const;
 
 		private:
+			void clear();
+
+			std::vector<std::shared_ptr<gameplay::components::DrawComponent>> components;
 			sf::RenderWindow window;
 
 			static const sf::Int16 WINDOW_WIDTH = 800;

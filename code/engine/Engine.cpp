@@ -65,14 +65,12 @@ namespace engine
 			graphicsManager->update();
 
 			//  draw
-			graphicsManager->clear();
-			gameplayManager->draw();
-			graphicsManager->display();
+			graphicsManager->draw();
 		}
 
 		//  release managers
-		graphicsManager.reset( nullptr );
 		gameplayManager.reset( nullptr );
+		graphicsManager.reset( nullptr );
 		physicsManager.reset( nullptr );
 		inputManager.reset( nullptr );
 	}

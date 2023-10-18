@@ -8,6 +8,15 @@ namespace engine
 			: engine( engine ) 
 		{}
 
+		Entity::~Entity()
+		{
+			for ( auto& component : components )
+			{
+				component->unsetup();
+			}
+			components.clear();
+		}
+
 		const sf::Vector2f & Entity::getPosition() const
 		{
 			return _position;

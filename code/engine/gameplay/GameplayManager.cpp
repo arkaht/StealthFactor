@@ -41,14 +41,6 @@ namespace engine
 			}
 		}
 
-		void Manager::draw()
-		{
-			for ( auto& entity : entitiesContainer )
-			{
-				entity->draw();
-			}
-		}
-
 		void Manager::gameOver()
 		{
 			std::cout << "Game over" << std::endl;

@@ -3,6 +3,7 @@
 #include <engine/gameplay/GameplayManager.hpp>
 #include <engine/graphics/GraphicsManager.hpp>
 #include <engine/physics/PhysicsManager.hpp>
+#include "engine/gameplay/components/DrawComponent.hpp"
 
 #include "engine/Engine.hpp"
 
@@ -24,6 +25,16 @@ namespace engine
 					1.f
 				);
 				dGeomSetData(collisionGeomId, this);
+
+				graphics::Manager& graphics_manager = engine.getGraphicsManager();
+				createComponent<components::DrawComponent>( 
+					*this, 
+					graphics_manager, 
+					shapeList 
+				);
+
+				/*auto comp = std::make_shared<components::DrawComponent>( *this, graphics_manager, shapeList );
+				comp->setup();*/
 			}
 
 			Target::~Target()
@@ -39,7 +50,7 @@ namespace engine
 
 			void Target::draw()
 			{
-				engine.getGraphicsManager().draw(shapeList, getTransform());
+				//engine.getGraphicsManager().draw(shapeList, getTransform());
 			}
 		}
 	}

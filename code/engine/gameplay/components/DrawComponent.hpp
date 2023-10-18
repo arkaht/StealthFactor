@@ -2,10 +2,14 @@
 
 #include <engine/gameplay/Component.hpp>
 #include <engine/graphics/ShapeList.hpp>
-#include <engine/graphics/GraphicsManager.hpp>
 
 namespace engine
 {
+	namespace graphics
+	{
+		class Manager;
+	}
+
 	namespace gameplay
 	{
 		namespace components
@@ -14,12 +18,16 @@ namespace engine
 			class DrawComponent : public Component
 			{
 			public:
-				DrawComponent(graphics::ShapeList _shapeList, Entity& _owner);
+				DrawComponent( Entity& _owner, graphics::Manager& _graphics_manager, graphics::ShapeList _shapeList );
 
-				virtual void draw(graphics::Manager& graphicsManager);
+				virtual void setup();
+				virtual void unsetup();
+
+				virtual void draw();
 
 			protected:
 				graphics::ShapeList shapeList;
+				graphics::Manager& graphicsManager;
 			};
 		}
 	}

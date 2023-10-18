@@ -26,7 +26,6 @@ namespace engine
 			virtual ~Manager();
 
 			void update();
-			void draw();
 
 			void gameOver();
 

@@ -29,11 +29,6 @@ namespace engine
 			window.setView( view );
 		}
 
-		void Manager::clear()
-		{
-			window.clear( sf::Color::Black );
-		}
-
 		void Manager::update()
 		{
 			//  polling window events
@@ -64,8 +59,18 @@ namespace engine
 			}
 		}
 
-		void Manager::display()
+		void Manager::draw()
 		{
+			//  clear background
+			clear();
+
+			//  draw components
+			for ( auto& component : components )
+			{
+				component->draw();
+			}
+
+			//  display on screen
 			window.display();
 		}
 
@@ -83,7 +88,20 @@ namespace engine
 			window.setView( view );
 		}
 
-		void Manager::draw( const ShapeList& shapeList, const sf::Transform& transform )
+		void Manager::registerComponent( std::shared_ptr<gameplay::components::DrawComponent> component )
+		{
+			components.push_back( component );
+			printf( "New Draw Component\n" );
+		}
+
+		void Manager::unregisterComponent( std::shared_ptr<gameplay::components::DrawComponent> component )
+		{
+			auto itr = std::find( components.begin(), components.end(), component );
+			components.erase( itr );
+			printf( "Remove Draw Component\n" );
+		}
+
+		void Manager::drawShape( const ShapeList& shapeList, const sf::Transform& transform )
 		{
 			sf::RenderStates renderStates { transform };
 			for ( auto shape : shapeList.getShapes() )
@@ -95,6 +113,11 @@ namespace engine
 		bool Manager::hasFocus() const
 		{
 			return window.hasFocus();
+		}
+
+		void Manager::clear()
+		{
+			window.clear( sf::Color::Black );
 		}
 	}
 }
