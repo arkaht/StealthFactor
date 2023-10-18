@@ -1,3 +1,4 @@
 /bin32/
 /bin64/
-/build/
+/build/Engine/obj/
+/build/.vs/
