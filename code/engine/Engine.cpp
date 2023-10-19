@@ -17,7 +17,7 @@ namespace engine
 		gameplayManager = std::make_unique<gameplay::Manager>( *this );
 		graphicsManager = std::make_unique<graphics::Manager>( *this );
 		physicsManager = std::make_unique<physics::Manager>();
-		inputManager = std::make_unique<input::Manager>( *this );
+		inputManager = std::make_unique<input::Manager>( graphicsManager->getWindow() );
 	}
 
 	void Engine::loadConfiguration()
@@ -48,7 +48,7 @@ namespace engine
 		gameplayManager->loadMap(startMap);
 
 		//  bind window close
-		graphicsManager->OnWindowClose.listen( "engine",
+		graphicsManager->getWindow().OnWindowClose.listen("engine",
 			std::bind( &Engine::exit, this )
 		);
 

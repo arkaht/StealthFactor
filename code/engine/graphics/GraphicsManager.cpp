@@ -11,52 +11,13 @@ namespace engine
 	namespace graphics
 	{
 		Manager::Manager( engine::Engine& engine )
-			: engine( engine )
+			: engine( engine ), window(WINDOW_WIDTH, WINDOW_HEIGHT, "Stealth Factor")
 		{
-			window.create(
-				sf::VideoMode {
-					(unsigned int)WINDOW_WIDTH,
-					(unsigned int)WINDOW_HEIGHT
-				},
-				"Stealth Factor"
-			);
-			window.setVerticalSyncEnabled( true );
-
-			sf::View view( 
-				sf::Vector2f { 0.f, 0.f }, 
-				sf::Vector2f { (float)WINDOW_WIDTH, (float)WINDOW_HEIGHT } 
-			);
-			window.setView( view );
 		}
 
 		void Manager::update()
 		{
-			//  polling window events
-			sf::Event event;
-			while ( window.pollEvent( event ) )
-			{
-				switch ( event.type )
-				{
-					//  window
-					case sf::Event::GainedFocus:
-						OnFocus.invoke( true );
-						break;
-					case sf::Event::LostFocus:
-						OnFocus.invoke( false );
-						break;
-					case sf::Event::Closed:
-						OnWindowClose.invoke();
-						break;
-
-					//  key inputs
-					case sf::Event::KeyPressed:
-						OnKeyPressed.invoke( event.key );
-						break;
-					case sf::Event::KeyReleased:
-						OnKeyReleased.invoke( event.key );
-						break;
-				}
-			}
+			window.pollEvents();
 		}
 
 		void Manager::draw()
@@ -104,7 +65,7 @@ namespace engine
 
 		void Manager::clear()
 		{
-			window.clear( sf::Color::Black );
+			window.clear();
 		}
 	}
 }

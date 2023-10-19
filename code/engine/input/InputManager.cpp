@@ -2,34 +2,30 @@
 
 #include <iterator>
 
-#include "engine/Engine.hpp"
-
 namespace engine
 {
 	namespace input
 	{
-		Manager::Manager( engine::Engine& engine )
-			: engine( engine )
+		Manager::Manager( engine::graphics::Window& _window )
+			: window( _window )
 		{}
 
 		void Manager::init()
 		{
-			auto& graphics_manager = engine.getGraphicsManager();
-
 			//  bind focus
-			graphics_manager.OnFocus.listen( "input::Manager",
+			window.OnFocus.listen( "input::Manager",
 				[&]( bool has_focus ) {
 				hasFocus = has_focus;
 				printf( "Has Focus %d\n", has_focus );
 			}
 			);
-			hasFocus = graphics_manager.hasFocus();
+			hasFocus = window.hasFocus();
 		
 			//  bind keys
-			graphics_manager.OnKeyPressed.listen( "input::Manager", 
+			window.OnKeyPressed.listen( "input::Manager",
 				std::bind( &Manager::onKeyPressed, this, std::placeholders::_1 ) 
 			);
-			graphics_manager.OnKeyReleased.listen( "input::Manager",
+			window.OnKeyReleased.listen( "input::Manager",
 				std::bind( &Manager::onKeyReleased, this, std::placeholders::_1 )
 			);
 		}

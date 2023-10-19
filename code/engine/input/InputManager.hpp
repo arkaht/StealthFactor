@@ -4,6 +4,8 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
+#include "engine/graphics/Window.hpp"
+
 namespace engine
 {
 	class Engine;
@@ -13,7 +15,7 @@ namespace engine
 		class Manager
 		{
 		public:
-			Manager( engine::Engine& engine );
+			Manager(engine::graphics::Window& _window);
 
 			void init();
 			void clear();
@@ -34,7 +36,7 @@ namespace engine
 			std::set<sf::Keyboard::Key> justPressedKeys;
 			std::set<sf::Keyboard::Key> justReleasedKeys;
 
-			engine::Engine& engine;
+			engine::graphics::Window& window;
 
 			bool hasFocus { false };
 		};

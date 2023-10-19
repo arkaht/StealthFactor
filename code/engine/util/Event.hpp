@@ -3,6 +3,7 @@
 #include <vector>
 #include <functional>
 #include <map>
+#include <string>
 
 namespace engine
 {
