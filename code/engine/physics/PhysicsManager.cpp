@@ -25,20 +25,6 @@ namespace engine
 			dCloseODE();
 		}
 
-		void Manager::registerComponent(std::shared_ptr<gameplay::components::PhysicComponent> component)
-		{
-			components.push_back(component);
-			printf("New Physics Component\n");
-		}
-
-		void Manager::unregisterComponent(std::shared_ptr<gameplay::components::PhysicComponent> component)
-		{
-			auto itr = std::find(components.begin(), components.end(), component);
-			components.erase(itr);
-			printf("Remove Physics Component\n");
-		}
-
-
 		void Manager::update()
 		{
 			frameCollisions.clear();
