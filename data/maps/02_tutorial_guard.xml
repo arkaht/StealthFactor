@@ -17,4 +17,5 @@
 			<column>2</column>
 		</enemy>
 	</elements>
+	<next_map>01_tutorial</next_map>
 </map>
