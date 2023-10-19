@@ -20,12 +20,10 @@ namespace engine
 				virtual void update() override;
 
 			private:
+				std::string shapeListName;
 				float visionRadius{ 0 };
 				int shootDelay{ 0 };
 				int shootDelayCounter{ 0 };
-
-				graphics::ShapeList shapeList;
-				dGeomID collisionGeomId;
 
 				void loadArchetype(const std::string &archetypeName);
 			};

@@ -17,7 +17,7 @@ namespace engine
 			class DrawComponent : public Component
 			{
 			public:
-				DrawComponent( Entity& _owner, graphics::Manager& _graphics_manager, graphics::ShapeList _shapeList );
+				DrawComponent(Entity& _owner, graphics::Manager& _graphics_manager, std::string shape_name );
 
 				virtual void setup();
 				virtual void unsetup();

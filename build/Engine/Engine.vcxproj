@@ -400,6 +400,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\code\engine\Engine.hpp" />
     <ClInclude Include="..\..\code\engine\gameplay\components\DrawComponent.hpp" />
+    <ClInclude Include="..\..\code\engine\gameplay\components\PhysicComponent.hpp" />
     <ClInclude Include="..\..\code\engine\gameplay\Entity.hpp" />
     <ClInclude Include="..\..\code\engine\gameplay\GameplayManager.hpp" />
     <ClInclude Include="..\..\code\engine\gameplay\entities\Enemy.hpp" />
@@ -417,6 +418,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\code\engine\Engine.cpp" />
     <ClCompile Include="..\..\code\engine\gameplay\components\DrawComponent.cpp" />
+    <ClCompile Include="..\..\code\engine\gameplay\components\PhysicComponent.cpp" />
     <ClCompile Include="..\..\code\engine\gameplay\Entity.cpp" />
     <ClCompile Include="..\..\code\engine\gameplay\GameplayManager.cpp" />
     <ClCompile Include="..\..\code\engine\gameplay\entities\Enemy.cpp" />

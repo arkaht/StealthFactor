@@ -8,6 +8,11 @@ namespace engine
 {
 	namespace gameplay
 	{
+		namespace components
+		{
+			class PhysicComponent;
+		}
+
 		namespace entities
 		{
 			class Player : public Entity
@@ -20,10 +25,8 @@ namespace engine
 				bool hasJustMoved() const { return justMoved; }
 
 			private:
-				graphics::ShapeList shapeList;
-				dGeomID collisionGeomId;
-
 				bool justMoved{ false };
+				std::shared_ptr<components::PhysicComponent> physicsComponent;
 			};
 		}
 	}

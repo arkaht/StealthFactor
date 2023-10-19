@@ -23,7 +23,7 @@ namespace engine
 				createComponent<components::DrawComponent>(
 					*this,
 					engine.getGraphicsManager(),
-					shapeList
+					shapeListName
 				);
 			}
 
@@ -73,8 +73,7 @@ namespace engine
 					assert( !doc.empty() );
 					auto xmlArchetype = doc.first_child();
 
-					std::string shapeListName = xmlArchetype.child_value( "shapelist" );
-					assert( shapeList.load( shapeListName ) );
+					shapeListName = xmlArchetype.child_value( "shapelist" );
 
 					visionRadius = std::stof( xmlArchetype.child_value( "vision_radius" ) );
 					assert( visionRadius > 0.f );

@@ -9,6 +9,8 @@
 #include <engine/input/InputManager.hpp>
 #include <engine/physics/PhysicsManager.hpp>
 #include <engine/Engine.hpp>
+#include "engine/gameplay/components/DrawComponent.hpp"
+#include "engine/gameplay/components/PhysicComponent.hpp"
 
 namespace engine
 {
@@ -20,15 +22,18 @@ namespace engine
 				: Entity( engine )
 			{
 				//  setup physics
-				collisionGeomId = dCreateBox( engine.getPhysicsManager().getSpaceId(), gameplay::Manager::CELL_SIZE * 0.9f, gameplay::Manager::CELL_SIZE * 0.9f, 1.f );
-				dGeomSetData( collisionGeomId, this );
+				physicsComponent = createComponent<components::PhysicComponent>(
+					*this,
+					engine.getPhysicsManager(),
+					gameplay::Manager::CELL_SIZE * 0.9f, 
+					gameplay::Manager::CELL_SIZE * 0.9f
+				);
 
 				//  setup rendering
-				shapeList.load( "player" );
 				createComponent<components::DrawComponent>(
 					*this,
 					engine.getGraphicsManager(),
-					shapeList
+					"player"
 				);
 			}
 
@@ -72,14 +77,13 @@ namespace engine
 				{
 					setPosition( position );
 					setRotation( rotation );
-
-					dGeomSetPosition( collisionGeomId, position.x, position.y, 0 );
 				}
 
-				auto collisions = engine.getPhysicsManager().getCollisionsWith( collisionGeomId );
+				auto collisions = physicsComponent->getCollisions();
 				for ( auto& geomId : collisions )
 				{
-					auto entity = reinterpret_cast<Entity*>( dGeomGetData( geomId ) );
+					auto component = reinterpret_cast<Component*>( dGeomGetData( geomId ) );
+					auto entity = &component->getOwner();
 					auto targetEntity = dynamic_cast<entities::Target*>( entity );
 					if ( targetEntity )
 					{

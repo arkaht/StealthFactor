@@ -24,6 +24,10 @@ namespace engine
 			{
 				return std::static_pointer_cast<T>( shared_from_this() );
 			}
+
+			Entity& getOwner() { return owner; }
+
+
 		protected:
 			Entity& owner;
 		};

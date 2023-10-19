@@ -9,10 +9,12 @@ namespace engine
 	{
 		namespace components
 		{
-			DrawComponent::DrawComponent( Entity& _owner, graphics::Manager& _graphics_manager, graphics::ShapeList _shapeList )
-				: shapeList( _shapeList ), graphicsManager( _graphics_manager ), 
+			DrawComponent::DrawComponent( Entity& _owner, graphics::Manager& _graphics_manager, std::string shape_name)
+				: graphicsManager( _graphics_manager ), 
 				  Component( _owner )
-			{}
+			{
+				shapeList.load(shape_name);
+			}
 
 			void DrawComponent::setup()
 			{

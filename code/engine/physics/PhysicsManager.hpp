@@ -3,6 +3,7 @@
 #include <set>
 #include <vector>
 #include <ode/collision.h>
+#include "engine/gameplay/components/PhysicComponent.hpp"
 
 namespace engine
 {
@@ -24,6 +25,9 @@ namespace engine
 			Manager();
 			~Manager();
 
+			void registerComponent(std::shared_ptr<gameplay::components::PhysicComponent> component);
+			void unregisterComponent(std::shared_ptr<gameplay::components::PhysicComponent> component);
+
 			void update();
 
 			dSpaceID getSpaceId() const;
@@ -33,6 +37,8 @@ namespace engine
 		private:
 			dSpaceID spaceId;
 			Collisions frameCollisions;
+
+			std::vector<std::shared_ptr<gameplay::components::PhysicComponent>> components;
 
 			static void nearCallback(void *data, dGeomID o1, dGeomID o2);
 		};

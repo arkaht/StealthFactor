@@ -59,10 +59,10 @@ namespace engine
 			deltaTime = clock.restart().asSeconds();
 
 			//  update
-			physicsManager->update();
-			gameplayManager->update();
 			inputManager->clear();
 			graphicsManager->update();
+			gameplayManager->update();
+			physicsManager->update();
 
 			//  draw
 			graphicsManager->draw();

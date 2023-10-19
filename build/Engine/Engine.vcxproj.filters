@@ -67,6 +67,9 @@
     <ClInclude Include="..\..\code\engine\util\ComponentManager.hpp">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\code\engine\gameplay\components\PhysicComponent.hpp">
+      <Filter>gameplay\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\engine\Engine.cpp" />
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="..\..\code\engine\gameplay\Component.cpp">
       <Filter>gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\engine\gameplay\components\PhysicComponent.cpp">
+      <Filter>gameplay\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
