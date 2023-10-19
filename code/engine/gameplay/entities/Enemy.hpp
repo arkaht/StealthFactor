@@ -1,7 +1,10 @@
 #pragma once
 
 #include <string>
-#include <engine/gameplay/entities/Character.hpp>
+
+#include <ode/collision.h>
+#include <engine/gameplay/Entity.hpp>
+#include <engine/graphics/GraphicsManager.hpp>
 
 namespace engine
 {
@@ -9,7 +12,7 @@ namespace engine
 	{
 		namespace entities
 		{
-			class Enemy : public Character
+			class Enemy : public Entity
 			{
 			public:
 				Enemy( engine::Engine& engine, const std::string& archetypeName );
@@ -20,6 +23,9 @@ namespace engine
 				float visionRadius{ 0 };
 				int shootDelay{ 0 };
 				int shootDelayCounter{ 0 };
+
+				graphics::ShapeList shapeList;
+				dGeomID collisionGeomId;
 
 				void loadArchetype(const std::string &archetypeName);
 			};

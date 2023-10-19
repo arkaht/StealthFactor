@@ -16,41 +16,33 @@ namespace engine
 			Target::Target( engine::Engine& engine )
 				: Entity( engine )
 			{
-				shapeList.load("target");
-
-				collisionGeomId = dCreateBox( 
+				//  setup physics
+				collisionGeomId = dCreateBox(
 					engine.getPhysicsManager().getSpaceId(),
 					gameplay::Manager::CELL_SIZE * 0.9f,
-					gameplay::Manager::CELL_SIZE * 0.9f, 
+					gameplay::Manager::CELL_SIZE * 0.9f,
 					1.f
 				);
-				dGeomSetData(collisionGeomId, this);
+				dGeomSetData( collisionGeomId, this );
 
-				graphics::Manager& graphics_manager = engine.getGraphicsManager();
-				createComponent<components::DrawComponent>( 
-					*this, 
-					graphics_manager, 
-					shapeList 
+				//  setup rendering
+				shapeList.load( "target" );
+				createComponent<components::DrawComponent>(
+					*this,
+					engine.getGraphicsManager(),
+					shapeList
 				);
-
-				/*auto comp = std::make_shared<components::DrawComponent>( *this, graphics_manager, shapeList );
-				comp->setup();*/
 			}
 
 			Target::~Target()
 			{
-				dGeomDestroy(collisionGeomId);
+				dGeomDestroy( collisionGeomId );
 			}
 
 			void Target::update()
 			{
-				auto &position = getPosition();
-				dGeomSetPosition(collisionGeomId, position.x, position.y, 0);
-			}
-
-			void Target::draw()
-			{
-				//engine.getGraphicsManager().draw(shapeList, getTransform());
+				auto& position = getPosition();
+				dGeomSetPosition( collisionGeomId, position.x, position.y, 0 );
 			}
 		}
 	}

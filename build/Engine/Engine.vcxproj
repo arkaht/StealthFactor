@@ -402,7 +402,6 @@
     <ClInclude Include="..\..\code\engine\gameplay\components\DrawComponent.hpp" />
     <ClInclude Include="..\..\code\engine\gameplay\Entity.hpp" />
     <ClInclude Include="..\..\code\engine\gameplay\GameplayManager.hpp" />
-    <ClInclude Include="..\..\code\engine\gameplay\entities\Character.hpp" />
     <ClInclude Include="..\..\code\engine\gameplay\entities\Enemy.hpp" />
     <ClInclude Include="..\..\code\engine\gameplay\entities\Player.hpp" />
     <ClInclude Include="..\..\code\engine\gameplay\entities\Target.hpp" />
@@ -419,7 +418,6 @@
     <ClCompile Include="..\..\code\engine\gameplay\components\DrawComponent.cpp" />
     <ClCompile Include="..\..\code\engine\gameplay\Entity.cpp" />
     <ClCompile Include="..\..\code\engine\gameplay\GameplayManager.cpp" />
-    <ClCompile Include="..\..\code\engine\gameplay\entities\Character.cpp" />
     <ClCompile Include="..\..\code\engine\gameplay\entities\Enemy.cpp" />
     <ClCompile Include="..\..\code\engine\gameplay\entities\Player.cpp" />
     <ClCompile Include="..\..\code\engine\gameplay\entities\Target.cpp" />

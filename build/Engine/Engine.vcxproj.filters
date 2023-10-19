@@ -31,9 +31,6 @@
     <ClInclude Include="..\..\code\engine\gameplay\GameplayManager.hpp">
       <Filter>gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\engine\gameplay\entities\Character.hpp">
-      <Filter>gameplay\entities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\code\engine\gameplay\entities\Enemy.hpp">
       <Filter>gameplay\entities</Filter>
     </ClInclude>
@@ -75,9 +72,6 @@
     </ClCompile>
     <ClCompile Include="..\..\code\engine\gameplay\GameplayManager.cpp">
       <Filter>gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\engine\gameplay\entities\Character.cpp">
-      <Filter>gameplay\entities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\code\engine\gameplay\entities\Enemy.cpp">
       <Filter>gameplay\entities</Filter>

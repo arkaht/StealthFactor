@@ -23,7 +23,6 @@ namespace engine
 			virtual ~Entity();
 
 			virtual void update() = 0;
-			virtual void draw() = 0;
 
 			template <typename T, typename ...Args>
 			std::shared_ptr<T> createComponent( Args&&... args )

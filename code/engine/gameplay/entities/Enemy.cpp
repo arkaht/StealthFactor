@@ -14,10 +14,17 @@ namespace engine
 	{
 		namespace entities
 		{
-			Enemy::Enemy(engine::Engine& engine, const std::string &archetypeName)
-				: Character( engine )
+			Enemy::Enemy( engine::Engine& engine, const std::string& archetypeName )
+				: Entity( engine )
 			{
-				loadArchetype(archetypeName);
+				loadArchetype( archetypeName );
+
+				//  setup rendering
+				createComponent<components::DrawComponent>(
+					*this,
+					engine.getGraphicsManager(),
+					shapeList
+				);
 			}
 
 			void Enemy::update()
@@ -29,15 +36,15 @@ namespace engine
 
 				if ( player->hasJustMoved() )
 				{
-					auto &playerPosition = player->getPosition();
-					auto &myPosition = getPosition();
+					auto& playerPosition = player->getPosition();
+					auto& myPosition = getPosition();
 
 					auto offset = myPosition - playerPosition;
 					offset /= gameplay::Manager::CELL_SIZE;
 					float distance2 = offset.x * offset.x + offset.y * offset.y;
-					if (distance2 <= visionRadius * visionRadius)
+					if ( distance2 <= visionRadius * visionRadius )
 					{
-						if (shootDelayCounter < shootDelay)
+						if ( shootDelayCounter < shootDelay )
 						{
 							++shootDelayCounter;
 						}
@@ -53,27 +60,27 @@ namespace engine
 				}
 			}
 
-			void Enemy::loadArchetype(const std::string &archetypeName)
+			void Enemy::loadArchetype( const std::string& archetypeName )
 			{
 				std::stringstream filename;
 				filename << "archetypes/" << archetypeName << ".xml";
 
 				pugi::xml_document doc;
-				pugi::xml_parse_result result = doc.load_file(filename.str().c_str());
+				pugi::xml_parse_result result = doc.load_file( filename.str().c_str() );
 
-				if (result)
+				if ( result )
 				{
-					assert(!doc.empty());
+					assert( !doc.empty() );
 					auto xmlArchetype = doc.first_child();
 
-					std::string shapeListName = xmlArchetype.child_value("shapelist");
-					assert(shapeList.load(shapeListName));
+					std::string shapeListName = xmlArchetype.child_value( "shapelist" );
+					assert( shapeList.load( shapeListName ) );
 
-					visionRadius = std::stof(xmlArchetype.child_value("vision_radius"));
-					assert(visionRadius > 0.f);
+					visionRadius = std::stof( xmlArchetype.child_value( "vision_radius" ) );
+					assert( visionRadius > 0.f );
 
-					shootDelay = std::stoi(xmlArchetype.child_value("shoot_delay"));
-					assert(shootDelay >= 0);
+					shootDelay = std::stoi( xmlArchetype.child_value( "shoot_delay" ) );
+					assert( shootDelay >= 0 );
 				}
 				else
 				{

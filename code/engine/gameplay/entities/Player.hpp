@@ -1,6 +1,8 @@
 #pragma once
 
-#include <engine/gameplay/entities/Character.hpp>
+#include <ode/collision.h>
+#include <engine/graphics/GraphicsManager.hpp>
+#include <engine/gameplay/Entity.hpp>
 
 namespace engine
 {
@@ -8,16 +10,19 @@ namespace engine
 	{
 		namespace entities
 		{
-			class Player : public Character
+			class Player : public Entity
 			{
 			public:
 				Player( engine::Engine& engine );
 
 				virtual void update() override;
 
-				bool hasJustMoved() const;
+				bool hasJustMoved() const { return justMoved; }
 
 			private:
+				graphics::ShapeList shapeList;
+				dGeomID collisionGeomId;
+
 				bool justMoved{ false };
 			};
 		}
