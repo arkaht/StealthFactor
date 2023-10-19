@@ -28,7 +28,7 @@ namespace engine
 			std::shared_ptr<T> createComponent( Args&&... args )
 			{
 				static_assert( std::is_base_of<Component, T>::value, "Provided class is NOT deriving from Component!" );
-				std::shared_ptr<T> component = std::make_shared<T>( args... );
+				std::shared_ptr<T> component = std::make_shared<T>( *this, args... );
 				component->setup();
 				
 				components.push_back( component );

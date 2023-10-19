@@ -19,7 +19,6 @@ namespace engine
 			{
 				//  setup physics
 				createComponent<components::PhysicComponent>(
-					*this,
 					engine.getPhysicsManager(),
 					gameplay::Manager::CELL_SIZE * 0.9f,
 					gameplay::Manager::CELL_SIZE * 0.9f
@@ -27,7 +26,6 @@ namespace engine
 
 				//  setup rendering
 				createComponent<components::DrawComponent>(
-					*this,
 					engine.getGraphicsManager(),
 					"target"
 				);

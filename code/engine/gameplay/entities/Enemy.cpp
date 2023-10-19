@@ -21,7 +21,6 @@ namespace engine
 
 				//  setup rendering
 				createComponent<components::DrawComponent>(
-					*this,
 					engine.getGraphicsManager(),
 					shapeListName
 				);
