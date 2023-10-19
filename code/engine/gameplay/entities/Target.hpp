@@ -14,9 +14,8 @@ namespace engine
 			{
 			public:
 				Target( engine::Engine& engine );
-				~Target();
 
-				virtual void update() override;
+				virtual void update() override {};
 			};
 		}
 	}

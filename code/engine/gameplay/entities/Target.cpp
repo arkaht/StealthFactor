@@ -30,12 +30,6 @@ namespace engine
 					"target"
 				);
 			}
-
-			Target::~Target()
-			{}
-
-			void Target::update()
-			{}
 		}
 	}
 }
