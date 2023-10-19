@@ -8,9 +8,9 @@ namespace engine
 {
 	namespace physics
 	{
-		Manager::Collision::Collision(dGeomID o1, dGeomID o2)
-			: o1{ o1 }
-			, o2{ o2 }
+		Manager::Collision::Collision( dGeomID o1, dGeomID o2 )
+			: o1 { o1 }
+			, o2 { o2 }
 		{
 		}
 
@@ -18,12 +18,12 @@ namespace engine
 		{
 			dInitODE();
 
-			spaceId = dHashSpaceCreate(0);
+			spaceId = dHashSpaceCreate( 0 );
 		}
 
 		Manager::~Manager()
 		{
-			dSpaceDestroy(spaceId);
+			dSpaceDestroy( spaceId );
 			dCloseODE();
 		}
 
@@ -72,10 +72,10 @@ namespace engine
 			return collisions;
 		}
 
-		void Manager::nearCallback(void *data, dGeomID o1, dGeomID o2)
+		void Manager::nearCallback( void* data, dGeomID o1, dGeomID o2 )
 		{
-			auto &frameCollisions = *reinterpret_cast<Collisions *>(data);
-			frameCollisions.emplace_back(o1, o2);
+			auto& frameCollisions = *reinterpret_cast<Collisions*>( data );
+			frameCollisions.emplace_back( o1, o2 );
 		}
 	}
 }

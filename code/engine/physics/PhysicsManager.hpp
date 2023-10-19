@@ -21,7 +21,7 @@ namespace engine
 				dGeomID o1;
 				dGeomID o2;
 
-				Collision(dGeomID o1, dGeomID o2);
+				Collision( dGeomID o1, dGeomID o2 );
 			};
 
 			using Collisions = std::vector<Collision>;
@@ -39,7 +39,6 @@ namespace engine
 			dSpaceID spaceId;
 			Collisions frameCollisions;
 
-			static void nearCallback(void *data, dGeomID o1, dGeomID o2);
 			static void nearCallback( void* data, dGeomID o1, dGeomID o2 );
 		};
 	}

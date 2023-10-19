@@ -41,29 +41,26 @@ namespace engine
 				auto position = getPosition();
 				float rotation = getRotation();
 
+				//  listen inputs
 				auto& input_manager = engine.getInputManager();
-
 				if ( input_manager.isKeyJustPressed( sf::Keyboard::Left ) )
 				{
 					justMoved = true;
 					position.x -= gameplay::Manager::CELL_SIZE;
 					rotation = 180.f;
 				}
-
 				if ( input_manager.isKeyJustPressed( sf::Keyboard::Right ) )
 				{
 					justMoved = true;
 					position.x += gameplay::Manager::CELL_SIZE;
 					rotation = 0.f;
 				}
-
 				if ( input_manager.isKeyJustPressed( sf::Keyboard::Up ) )
 				{
 					justMoved = true;
 					position.y -= gameplay::Manager::CELL_SIZE;
 					rotation = -90.f;
 				}
-
 				if ( input_manager.isKeyJustPressed( sf::Keyboard::Down ) )
 				{
 					justMoved = true;
@@ -71,12 +68,14 @@ namespace engine
 					rotation = 90.f;
 				}
 
+				//  update transform
 				if ( justMoved )
 				{
 					setPosition( position );
 					setRotation( rotation );
 				}
 
+				//  check collisions w/ a Target
 				auto collisions = physicsComponent->getCollisions();
 				for ( auto& component : collisions )
 				{
