@@ -14,7 +14,6 @@ namespace engine
 	{
 		namespace components
 		{
-
 			class DrawComponent : public Component
 			{
 			public:

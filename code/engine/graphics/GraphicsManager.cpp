@@ -88,19 +88,6 @@ namespace engine
 			window.setView( view );
 		}
 
-		void Manager::registerComponent( std::shared_ptr<gameplay::components::DrawComponent> component )
-		{
-			components.push_back( component );
-			printf( "New Draw Component\n" );
-		}
-
-		void Manager::unregisterComponent( std::shared_ptr<gameplay::components::DrawComponent> component )
-		{
-			auto itr = std::find( components.begin(), components.end(), component );
-			components.erase( itr );
-			printf( "Remove Draw Component\n" );
-		}
-
 		void Manager::drawShape( const ShapeList& shapeList, const sf::Transform& transform )
 		{
 			sf::RenderStates renderStates { transform };

@@ -3,8 +3,11 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Shape.hpp>
 #include <SFML/Window/Event.hpp>
+
 #include "engine/util/Event.hpp"
 #include "engine/gameplay/components/DrawComponent.hpp"
+
+#include "engine/util/ComponentManager.hpp"
 
 namespace engine
 {
@@ -14,7 +17,7 @@ namespace engine
 	{
 		class ShapeList;
 
-		class Manager
+		class Manager : public util::ComponentManager<engine::gameplay::components::DrawComponent>
 		{
 		public:
 			/*
@@ -43,9 +46,6 @@ namespace engine
 
 			Manager( engine::Engine& engine );
 
-			void registerComponent( std::shared_ptr<gameplay::components::DrawComponent> component );
-			void unregisterComponent( std::shared_ptr<gameplay::components::DrawComponent> component );
-			
 			void update();
 			void draw();
 			void close();
@@ -59,7 +59,6 @@ namespace engine
 		private:
 			void clear();
 
-			std::vector<std::shared_ptr<gameplay::components::DrawComponent>> components;
 			sf::RenderWindow window;
 
 			static const sf::Int16 WINDOW_WIDTH = 800;

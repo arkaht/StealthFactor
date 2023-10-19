@@ -64,6 +64,9 @@
     <ClInclude Include="..\..\code\engine\gameplay\components\DrawComponent.hpp">
       <Filter>gameplay\components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\code\engine\util\ComponentManager.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\engine\Engine.cpp" />
