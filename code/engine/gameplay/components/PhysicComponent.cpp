@@ -36,7 +36,7 @@ namespace engine
 				dGeomSetPosition(collisionGeomId, position.x, position.y, 0);
 			}
 
-			std::set<dGeomID> PhysicComponent::getCollisions()
+			std::set<Component*> PhysicComponent::getCollisions()
 			{
 				return physicsManager.getCollisionsWith(collisionGeomId);
 			}

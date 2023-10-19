@@ -1,5 +1,7 @@
 #include "PhysicsManager.hpp"
 
+#include <cassert>
+
 #include <ode/odeinit.h>
 
 namespace engine
@@ -27,38 +29,47 @@ namespace engine
 
 		void Manager::update()
 		{
-			frameCollisions.clear();
-
-			for (auto& component : components)
+			//  update components
+			for ( auto& component : components )
 			{
 				component->updatePhysics();
 			}
 
-			dSpaceCollide(spaceId, &frameCollisions, &Manager::nearCallback);
+			//  update physics
+			frameCollisions.clear();
+			dSpaceCollide( spaceId, &frameCollisions, &Manager::nearCallback );
 		}
 
-		dSpaceID Manager::getSpaceId() const
+		std::set<Component*> Manager::getCollisionsWith( dGeomID obj_id ) const
 		{
-			return spaceId;
-		}
+			std::set<Component*> collisions;
 
-		std::set<dGeomID> Manager::getCollisionsWith(dGeomID object) const
-		{
-			std::set<dGeomID> objectCollisions;
-
-			for (auto &collision : frameCollisions)
+			for ( auto& collision : frameCollisions )
 			{
-				if (collision.o1 == object)
+				//  get collision object
+				dGeomID id;
+				if ( collision.o1 == obj_id )
 				{
-					objectCollisions.insert(collision.o2);
+					id = collision.o2;
 				}
-				if (collision.o2 == object)
+				else if ( collision.o2 == obj_id )
 				{
-					objectCollisions.insert(collision.o1);
+					id = collision.o1;
 				}
+				else
+				{
+					continue;
+				}
+				
+				//  cast to component
+				auto component = reinterpret_cast<Component*>( dGeomGetData( id ) );
+				assert( component != nullptr );
+
+				//  push in
+				collisions.insert( component );
 			}
 
-			return objectCollisions;
+			return collisions;
 		}
 
 		void Manager::nearCallback(void *data, dGeomID o1, dGeomID o2)

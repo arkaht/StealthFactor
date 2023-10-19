@@ -78,9 +78,8 @@ namespace engine
 				}
 
 				auto collisions = physicsComponent->getCollisions();
-				for ( auto& geomId : collisions )
+				for ( auto& component : collisions )
 				{
-					auto component = reinterpret_cast<Component*>( dGeomGetData( geomId ) );
 					auto entity = &component->getOwner();
 					auto targetEntity = dynamic_cast<entities::Target*>( entity );
 					if ( targetEntity )

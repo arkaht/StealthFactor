@@ -7,11 +7,13 @@
 
 #include "engine/util/ComponentManager.hpp"
 
+using namespace engine::gameplay;
+
 namespace engine
 {
 	namespace physics
 	{
-		class Manager : public util::ComponentManager<engine::gameplay::components::PhysicComponent>
+		class Manager : public util::ComponentManager<components::PhysicComponent>
 		{
 		public:
 			struct Collision
@@ -29,15 +31,16 @@ namespace engine
 
 			void update();
 
-			dSpaceID getSpaceId() const;
+			std::set<Component*> getCollisionsWith( dGeomID obj_id ) const;
 
-			std::set<dGeomID> getCollisionsWith(dGeomID object) const;
+			dSpaceID getSpaceId() const { return spaceId; }
 
 		private:
 			dSpaceID spaceId;
 			Collisions frameCollisions;
 
 			static void nearCallback(void *data, dGeomID o1, dGeomID o2);
+			static void nearCallback( void* data, dGeomID o1, dGeomID o2 );
 		};
 	}
 }

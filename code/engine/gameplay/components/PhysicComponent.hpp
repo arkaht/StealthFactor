@@ -24,7 +24,7 @@ namespace engine
 				virtual void unsetup();
 
 				virtual void updatePhysics();
-				std::set<dGeomID> getCollisions();
+				std::set<Component*> getCollisions();
 
 			protected:
 				dGeomID collisionGeomId;
